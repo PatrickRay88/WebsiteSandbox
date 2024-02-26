@@ -40,21 +40,17 @@ def retreiveData(key):
     aging = [data['daysOld']] + [comp['daysOld'] for comp in data['comparables']]
     if len(prices)>len(aging):
         prices = prices[1:]
-    
     return aging, prices 
-#print(data)
     print("Retrieve data successfull")
     print(prices)
     print(aging)
+
 #Plotting data
 import matplotlib.pyplot as plt
-
-
 
 # Extract the prices and daysOld from the list of comparables
 aging, prices = retreiveData(key)
  
-
 # Plot the prices against the daysOld
 plt.plot(prices, aging, 'o')
 plt.xlabel('Days Old')
