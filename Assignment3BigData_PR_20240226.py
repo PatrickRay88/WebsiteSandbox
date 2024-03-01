@@ -108,6 +108,7 @@ if __name__ == "__main__":
     plt.xlabel('Price')
     plt.ylabel('Days Old')
     plt.title('Price vs Days Old')
+    plt.show()
     
     coefficients = np.polyfit(prices, days_old_list, 1)
     polynomial = np.poly1d(coefficients)
