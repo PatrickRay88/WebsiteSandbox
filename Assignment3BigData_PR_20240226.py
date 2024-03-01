@@ -118,10 +118,6 @@ if __name__ == "__main__":
     #axs[0].axvline(x=averagePrice, color='r', linestyle='--', label='Average Listing Price')
     axs[0].legend()
     
-    #do some maths
-    # coefficients = np.polyfit(prices, days_old_list, 1)
-    # polynomial = np.poly1d(coefficients)
-    
     #subplot "2"
     axs[1].plot(prices, days_old_list, 'o', label='Data')
     axs[1].set_xlabel('Price')
