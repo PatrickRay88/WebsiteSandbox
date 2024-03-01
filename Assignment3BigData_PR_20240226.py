@@ -22,7 +22,7 @@ class API:
        
        Returns
        -------
-       JSON.json()
+       dataDict = JSONData.json()
         Pulls JSON data from an API call in the variable.
        '''
        
@@ -32,7 +32,6 @@ class API:
             "X-Api-Key": "53103c8e74074e6e868895e2b8395868"
             }
        JSONData = requests.get(url, headers=headers)
-        #dataDict = JSONData.text
        if JSONData.status_code == 200:
             # Return the JSON data_dict
          return JSONData.json()
@@ -54,7 +53,7 @@ class Redis:
             Sets the key for uploading JSON data
         Returns
         -------
-        None.
+        None. Uploads JSON file to Redis database
 
         '''
         r.json().set("somekey", ".", dataDict)
@@ -89,6 +88,7 @@ class Redis:
 ## Use API / Load / Extract REDIS Data and do some ploting ##
 #############################################################
 if __name__ == "__main__":
+    
     #establish connection
     r = get_redis_connection()
     
