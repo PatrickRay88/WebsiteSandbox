@@ -103,19 +103,25 @@ if __name__ == "__main__":
     Plot a trendline
     
     '''
+    #Compute Average price 
+    averagePrice = np.mean(prices)
+    
     #set up subplots
     fig, axs = plt.subplots(2, 1, figsize=(8, 10))
     
+    #subplot "1"
     axs[0].plot(prices, days_old_list, 'o', label='Data')
     axs[0].set_xlabel('Price')
     axs[0].set_ylabel('Days Old')
     axs[0].set_title('Price vs Days Old')
+    axs[0].axvline(x=averagePrice, color='r', linestyle='--', label='Average Listing Price')
     axs[0].legend()
     
     #do some maths
     coefficients = np.polyfit(prices, days_old_list, 1)
     polynomial = np.poly1d(coefficients)
     
+    #subplot "2"
     axs[1].plot(prices, days_old_list, 'o', label='Data')
     axs[1].set_xlabel('Price')
     axs[1].set_ylabel('Days Old')
@@ -123,5 +129,6 @@ if __name__ == "__main__":
     axs[1].set_xlabel('Price')
     axs[1].set_ylabel('Days Old')
     axs[1].set_title('Price vs Days Old')
+    axs[1].axvline(x=averagePrice, color='r', linestyle='--', label='Average Listing Price')
     axs[1].legend()
     plt.show()
