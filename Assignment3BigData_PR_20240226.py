@@ -108,7 +108,7 @@ if __name__ == "__main__":
     coefficients = np.polyfit(prices, days_old_list, 1)
     polynomial = np.poly1d(coefficients)
     #set up subplots
-    fig, axs = plt.subplots(3, 1, figsize=(8, 10))
+    fig, axs = plt.subplots(3, 1, figsize=(8, 12))
     
     #subplot "1"
     axs[0].plot(prices, days_old_list, 'o', label='Data')
