@@ -99,19 +99,29 @@ if __name__ == "__main__":
     
     '''
     Plot the prices against the amount of days old
-    
+    and then,
     Plot a trendline
     
     '''
-
-    plt.plot(prices, days_old_list, 'o')
-    plt.xlabel('Price')
-    plt.ylabel('Days Old')
-    plt.title('Price vs Days Old')
-    plt.show()
+    #set up subplots
+    fig, axs = plt.subplots(2, 1, figsize=(8, 10))
     
+    axs[0].plot(prices, days_old_list, 'o', label='Data')
+    axs[0].set_xlabel('Price')
+    axs[0].set_ylabel('Days Old')
+    axs[0].set_title('Price vs Days Old')
+    axs[0].legend()
+    
+    #do some maths
     coefficients = np.polyfit(prices, days_old_list, 1)
     polynomial = np.poly1d(coefficients)
-    plt.plot(prices, polynomial(prices), color='red',label='Trendline')
-    plt.legend()
+    
+    axs[1].plot(prices, days_old_list, 'o', label='Data')
+    axs[1].set_xlabel('Price')
+    axs[1].set_ylabel('Days Old')
+    axs[1].plot(prices, polynomial(prices), color='red',label='Trendline')
+    axs[1].set_xlabel('Price')
+    axs[1].set_ylabel('Days Old')
+    axs[1].set_title('Price vs Days Old')
+    axs[1].legend()
     plt.show()
