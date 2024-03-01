@@ -99,8 +99,10 @@ if __name__ == "__main__":
     
     '''
     Plot the prices against the amount of days old
-    and then,
-    Plot a trendline
+    then,
+    Plot a trendline 
+    Finally 
+    Plot the average price as a Vertical Marker
     
     '''
     #Compute Average price and other maths
