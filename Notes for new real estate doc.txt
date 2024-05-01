@@ -1,0 +1,26 @@
+Cypher script to load data into NEO4J AURA DB...
+
+https://catalog.data.gov/dataset/
+
+LOAD CSV WITH HEADERS FROM 'https://drive.google.com/uc?export=download&id=1E5tx4yrPAaWSL5I8laApisUQ9gw_dbKZ' AS line
+WITH line
+WHERE line.Latitude IS NOT NULL AND line.Longitude IS NOT NULL
+MERGE (property:Property {
+    serialNumber: line.`Serial Number`,
+    listYear: toInteger(line.`List Year`),
+    dateRecorded: line.`Date Recorded`,
+    town: line.Town,
+    address: line.Address,
+    assessedValue: toInteger(line.`Assessed Value`),
+    saleAmount: toInteger(line.`Sale Amount`),
+    salesRatio: toFloat(line.`Sales Ratio`),
+    propertyType: line.`Property Type`,
+    residentialType: line.`Residential Type`
+})
+SET property.location = point({latitude: toFloat(line.Latitude), longitude: toFloat(line.Longitude)})
+Tableau -> had some experience otherwise watched some youtube videos... 
+
+- Had alot of errors/issues loading data and troubleshooting Cypher script to get it to work. 
+
+
+https://neo4j.com/docs/aura/tutorials/bi/#_jdbcsql

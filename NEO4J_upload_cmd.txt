@@ -1,0 +1,231 @@
+CSV.SET Supply_Chain_Dataset C:\Users\patri\OneDrive\Documents\RowanMaster'sClassesFiles\BigDataClass\FinalProjectData
+
+running 40commands/s updated each hash 1per/second
+
+(180000÷60)÷60=50hours to process -abandon ship
+
+3000 rows ~= 11MB * 60
+
+180000 hash stored rows will = 660MB 
+
+
+
+
+
+###########################################
+****PREVIOUS ASSIGGMNET LOAD SCRIPT********
+############################################
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/gchandra10/filestorage/main/sales_100.csv' AS row
+
+MERGE (region:Region {name: row.Region})
+MERGE (country:Country {name: row.Country})
+MERGE (itemType:ItemType {name: row.`Item Type`})
+MERGE (salesChannel:SalesChannel {name: row.`Sales Channel`})
+MERGE (sale:Sale {
+  orderId: toInteger(row.`Order ID`),
+  unitsSold: toInteger(row.UnitsSold),
+  unitPrice: toFloat(row.UnitPrice),
+  totalRevenue: toFloat(row.TotalRevenue),
+  totalCost: toFloat(row.TotalCost),
+  totalProfit: toFloat(row.TotalProfit)
+})
+
+MERGE (region)-[:CONTAINS]->(country)
+MERGE (country)-[:SOLD_ITEM]->(sale)
+MERGE (sale)-[:SOLD_ON]->(salesChannel);
+################################################################################
+################################################################################
+
+**********Final Project scripts sandbox*************************************
+%%%%%%%%%%%%%%%%%%%%%
+$$$$$$$$$$$$$$$$$$$$$   THIS ONE 
+%%%%%%%%%%%%%%%%%%%%5
+https://drive.google.com/file/d/1E5tx4yrPAaWSL5I8laApisUQ9gw_dbKZ/view?usp=sharing
+
+
+LOAD CSV WITH HEADERS FROM 'https://drive.google.com/uc?export=download&id=1E5tx4yrPAaWSL5I8laApisUQ9gw_dbKZ' AS line
+WITH line
+WHERE line.Latitude IS NOT NULL AND line.Longitude IS NOT NULL
+MERGE (property:Property {
+    serialNumber: line.`Serial Number`,
+    listYear: toInteger(line.`List Year`),
+    dateRecorded: line.`Date Recorded`,
+    town: line.Town,
+    address: line.Address,
+    assessedValue: toInteger(line.`Assessed Value`),
+    saleAmount: toInteger(line.`Sale Amount`),
+    salesRatio: toFloat(line.`Sales Ratio`),
+    propertyType: line.`Property Type`,
+    residentialType: line.`Residential Type`
+})
+SET property.location = point({latitude: toFloat(line.Latitude), longitude: toFloat(line.Longitude)})
+
+
+
+LOAD CSV WITH HEADERS FROM 'https://drive.google.com/uc?export=download&id=1E5tx4yrPAaWSL5I8laApisUQ9gw_dbKZ' AS line
+WITH line
+WHERE line.Latitude IS NOT NULL AND line.Longitude IS NOT NULL
+MERGE (property:Property {
+    serialNumber: line.`Serial Number`,
+    listYear: toInteger(line.`List Year`),
+    dateRecorded: line.`Date Recorded`,
+    town: line.Town,
+    address: line.Address,
+    assessedValue: toInteger(line.`Assessed Value`),
+    saleAmount: toInteger(line.`Sale Amount`),
+    salesRatio: toFloat(line.`Sales Ratio`),
+    propertyType: line.`Property Type`,
+    residentialType: line.`Residential Type`,
+    location: point({latitude: toFloat(line.Latitude), longitude: toFloat(line.Longitude)})
+})
+
+
+
+
+LOAD CSV WITH HEADERS FROM 'https://drive.google.com/uc?export=download&id=1E5tx4yrPAaWSL5I8laApisUQ9gw_dbKZ' AS line
+WITH line
+MERGE (property:Property {
+    serialNumber: line.`Serial Number`,
+    listYear: toInteger(line.`List Year`),
+    dateRecorded: line.`Date Recorded`,
+    town: line.Town,
+    address: line.Address,
+    assessedValue: toInteger(line.`Assessed Value`),
+    saleAmount: toInteger(line.`Sale Amount`),
+    salesRatio: toFloat(line.`Sales Ratio`),
+    propertyType: line.`Property Type`,
+    residentialType: line.`Residential Type`,
+    location: point({latitude: toFloat(line.Latitude), longitude: toFloat(line.Longitude)})
+})
+
+https://drive.google.com/file/d/1ss4jOZmkTw1yosBTS2YzhMqC0-kepUEg/view?usp=sharing
+
+LOAD CSV WITH HEADERS FROM 'https://drive.google.com/uc?export=download&id=1ss4jOZmkTw1yosBTS2YzhMqC0-kepUEg' AS row
+CREATE (:Record {
+    serialNumber: row.`Serial Number`,
+    listYear: row.`List Year`,
+    dateRecorded: row.`Date Recorded`,
+    town: row.Town,
+    address: row.Address,
+    assessedValue: toInteger(row.`Assessed Value`),
+    saleAmount: toInteger(row.`Sale Amount`),
+    salesRatio: toFloat(row.`Sales Ratio`),
+    propertyType: row.`Property Type`
+})
+
+
+############ first half
+
+LOAD CSV WITH HEADERS FROM 'https://drive.google.com/uc?export=download&id=15jKgxYuRImJoKG3ZcX3iCU_8CJmK1FCZ' AS row
+
+MERGE (s:Record {serialNumber: row.`Serial Number`})
+SET s.listYear = row.`List Year`,
+    s.dateRecorded = row.`Date Recorded`,
+    s.town = row.`Town`,
+    s.address = row.`Address`,
+    s.assessedValue = toInteger(row.`Assessed Value`),
+    s.saleAmount = toInteger(row.`Sale Amount`),
+    s.salesRatio = toFloat(row.`Sales Ratio`),
+    s.propertyType = row.`Property Type`;
+
+############# second half
+LOAD CSV WITH HEADERS FROM 'https://drive.google.com/uc?export=download&id=15jKgxYuRImJoKG3ZcX3iCU_8CJmK1FCZ' AS row
+WITH row
+SKIP 50000
+MERGE (s:Record {serialNumber: row.`Serial Number`})
+SET s.listYear = row.`List Year`,
+    s.dateRecorded = row.`Date Recorded`,
+    s.town = row.`Town`,
+    s.address = row.`Address`,
+    s.assessedValue = toInteger(row.`Assessed Value`),
+    s.saleAmount = toInteger(row.`Sale Amount`),
+    s.salesRatio = toFloat(row.`Sales Ratio`),
+    s.propertyType = row.`Property Type`;
+
+TRY THIS ONE NEXT 
+
+LOAD CSV WITH HEADERS FROM 'https://drive.google.com/uc?export=download&id=15jKgxYuRImJoKG3ZcX3iCU_8CJmK1FCZ' AS row
+MERGE (property:Property {address: row.Address})
+SET property.assessedValue = toInteger(row.`Assessed Value`),
+    property.saleAmount = toInteger(row.`Sale Amount`),
+    property.salesRatio = toFloat(row.`Sales Ratio`),
+    property.propertyType = row.`Property Type`;
+
+
+
+
+############ first half
+WITH row
+SKIP 0
+LIMIT 50000
+
+############# second half
+
+WITH row
+SKIP 50000
+
+MERGE (o:Order {orderId: row.`Order Id`})
+SET o.orderDate = row.`order date (DateOrders)`,
+    o.orderStatus = row.`Order Status`,
+    o.shippingMode = row.`Shipping Mode`
+
+MERGE (p:Product {productId: row.`Product Card Id`})
+SET p.productName = row.`Product Name`,
+    p.productCategory = row.`Category Name`,
+    p.productSubCategory = row.`SubCategory Name`,
+    p.productQuantity = toInteger(row.`Product Quantity`),
+    p.productSales = toFloat(row.`Product Sales`),
+    p.productDiscount = toFloat(row.`Product Discount`),
+    p.productProfit = toFloat(row.`Product Profit`)
+
+MERGE (c:Customer {customerId: row.`Customer Id`})
+SET c.customerFname = row.`Customer Fname`,
+    c.customerLname = row.`Customer Lname`,
+    c.customerCity = row.`Customer City`,
+    c.customerCountry = row.`Customer Country`,
+    c.customerState = row.`Customer State`,
+    c.customerZipcode = row.`Customer Zipcode`
+
+MERGE (o)-[:CONTAINS]->(p)
+MERGE (o)-[:SOLD_TO]->(c);
+
+
+adding geolocation to town data 
+
+import pandas as pd
+from geopy.geocoders import Nominatim
+
+# Load your dataset CSV file
+file_path = 'your_dataset.csv'
+data = pd.read_csv(file_path)
+
+# Initialize geocoder
+geolocator = Nominatim(user_agent="town_geocoder")
+
+# Function to get latitude and longitude for a town name
+def get_lat_lon(town):
+    location = geolocator.geocode(town)
+    if location:
+        return location.latitude, location.longitude
+    else:
+        return None, None
+
+# Add latitude and longitude columns to the dataset
+data['Latitude'] = None
+data['Longitude'] = None
+
+# Iterate over each row and geocode town names
+for index, row in data.iterrows():
+    town = row['Town']
+    latitude, longitude = get_lat_lon(town)
+    data.at[index, 'Latitude'] = latitude
+    data.at[index, 'Longitude'] = longitude
+
+# Save the updated dataset to a new CSV file
+updated_file_path = 'updated_dataset.csv'
+data.to_csv(updated_file_path, index=False)
+
+print("Latitude and longitude coordinates added successfully.")
+
+
+
