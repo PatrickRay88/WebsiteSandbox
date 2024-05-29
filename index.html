@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Contractor - Remodeling and Decks</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Local Contractor</h1>
+        <nav>
+            <ul>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="intro">
+        <h2>Welcome to Our Remodeling and Deck Services</h2>
+        <p>We specialize in transforming homes with quality remodeling and deck construction. Your dream home is just a project away!</p>
+    </section>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="service">
+            <h3>Remodeling</h3>
+            <p>Expert remodeling services to enhance your home’s interior and exterior.</p>
+        </div>
+        <div class="service">
+            <h3>Deck Construction</h3>
+            <p>Beautiful and durable decks tailored to your outdoor space.</p>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2>Gallery</h2>
+        <div class="gallery-item">
+            <img src="image1.jpg" alt="Project 1">
+            <p>Project Description 1</p>
+        </div>
+        <div class="gallery-item">
+            <img src="image2.jpg" alt="Project 2">
+            <p>Project Description 2</p>
+        </div>
+        <!-- Add more gallery items as needed -->
+    </section>
+
+    <section id="testimonials">
+        <h2>Testimonials</h2>
+        <blockquote>
+            <p>"Amazing craftsmanship and attention to detail!"</p>
+            <cite>- Happy Customer</cite>
+        </blockquote>
+        <blockquote>
+            <p>"Our new deck is the perfect addition to our home."</p>
+            <cite>- Satisfied Client</cite>
+        </blockquote>
+        <!-- Add more testimonials as needed -->
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form action="submit_form.php" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Local Contractor. All rights reserved.</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
