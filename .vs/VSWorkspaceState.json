@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\.github",
+    "\\.github\\workflows"
   ],
-  "SelectedNode": "\\C:\\Users\\patri\\Source\\Repos\\WebsiteSandbox",
+  "SelectedNode": "\\index.html",
   "PreviewInSolutionExplorer": false
 }
